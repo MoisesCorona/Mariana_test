@@ -35,19 +35,18 @@ export default defineConfig({
   /* Configure projects for major browsers */
   projects: [
     {
-      name: 'chromium',
+      name: 'smoke',
       use: { ...devices['Desktop Chrome'] },
+      testMatch: /.*smoke.spec.ts/
     },
 
     {
-      name: 'firefox',
-      use: { ...devices['Desktop Firefox'] },
+      name: 'regression',
+      use: { ...devices['Desktop Chrome'] },
+      testIgnore: /.*smoke.spec.ts/,
+      dependencies: ['smoke']
     },
 
-    {
-      name: 'webkit',
-      use: { ...devices['Desktop Safari'] },
-    },
 
     /* Test against mobile viewports. */
     // {
