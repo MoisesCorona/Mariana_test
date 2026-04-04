@@ -34,10 +34,23 @@ export default defineConfig({
 
   /* Configure projects for major browsers */
   projects: [
+
+    {
+      name: 'data-setup',
+      testMatch: /.*data-setup.spec.ts/,
+      teardown: 'data-cleanup'
+    },
+    {
+      name: 'data-cleanup',
+      testMatch: /.*data-cleanup.spec.ts/
+    },
+
     {
       name: 'smoke',
       use: { ...devices['Desktop Chrome'] },
-      testMatch: /.*smoke.spec.ts/
+      testMatch: /.*smoke.spec.ts/,
+      dependencies: ['data-setup'],
+      fullyParallel: false
     },
 
     {
